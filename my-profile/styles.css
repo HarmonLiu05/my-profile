@@ -50,6 +50,7 @@ body {
     animation: gradientShift 10s ease infinite;
 }
 
+/* 头像样式及悬停放大效果 */
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -57,6 +58,14 @@ body {
     object-fit: cover;
     border: 5px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 1rem;
+    /* 添加过渡动画 */
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* 鼠标悬停时放大头像并改变边框颜色 */
+.profile-pic:hover {
+    transform: scale(1.1); /* 放大 10% */
+    border-color: rgba(255, 255, 255, 0.5); /* 边框颜色变亮 */
 }
 
 .header h1 {
