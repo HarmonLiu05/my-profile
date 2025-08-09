@@ -9,7 +9,8 @@
 <body>
     <header class="header">
         <div class="container">
-            <img src="profile.jpg" alt="我的头像" class="profile-pic">
+            <!-- 为头像添加一个按钮角色和ID，方便JS操作 -->
+            <img src="profile.jpg" alt="我的头像" class="profile-pic" id="profile-pic">
             <div class="header-text">
                 <h1>刘和雄</h1>
                 <p class="subtitle">大二软件工程学生 | 前端开发爱好者</p>
@@ -80,5 +81,13 @@
     </footer>
     <!-- 在 body 底部引入 scripts.js -->
     <script src="scripts.js"></script>
+
+    <!-- 模态框 (Modal) HTML 结构 -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="放大头像">
+        </div>
+    </div>
 </body>
 </html>

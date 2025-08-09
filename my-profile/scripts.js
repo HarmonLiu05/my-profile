@@ -25,21 +25,53 @@ function addSkill() {
         newSkillItem.classList.add('skill-enter');
         skillList.appendChild(newSkillItem);
         skillInput.value = ''; // 清空输入框
-
-        // 可选：使用 setTimeout 来触发 CSS 过渡动画
-        // 由于 DOM 操作是同步的，直接添加类可能不会触发动画
-        // 需要下一帧再添加动画类
-        setTimeout(() => {
-             // 这里可以添加更复杂的动画逻辑，或者依赖CSS动画
-             // 目前我们依靠CSS的 .skill-enter 类来定义初始状态和过渡
-        }, 0);
-
     } else {
         alert('请输入一个技能名称！');
     }
 }
 
-// 3. 页面加载完成后执行的初始化代码
+// 3. 图片放大查看功能
+function setupImageModal() {
+    // 获取模态框元素
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const profilePic = document.getElementById('profile-pic');
+    const span = document.getElementsByClassName("close")[0];
+
+    if (!modal || !modalImg || !profilePic || !span) {
+        console.error("未能找到模态框相关元素，请检查HTML结构。");
+        return;
+    }
+
+    // 点击头像时，显示模态框
+    profilePic.onclick = function(){
+        modal.style.display = "block";
+        // 将模态框中的图片源设置为头像的源
+        modalImg.src = this.src;
+        // 添加 'show' 类以触发动画
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+
+    // 点击关闭按钮(x)时，关闭模态框
+    span.onclick = function() {
+        modal.classList.remove('show');
+        // 动画结束后隐藏模态框
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    }
+
+    // 点击模态框背景时，关闭模态框
+    modal.onclick = function(event) {
+        if (event.target === modal) {
+            span.onclick();
+        }
+    }
+}
+
+// 4. 页面加载完成后执行的初始化代码
 document.addEventListener('DOMContentLoaded', function() {
     console.log('页面已加载，JavaScript 初始化完成。');
 
@@ -81,4 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
         });
     });
+
+    // 初始化图片放大功能
+    setupImageModal();
 });
